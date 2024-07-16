@@ -8,6 +8,8 @@ import Login from "./routes/login";
 import CreateAccount from "./routes/create-account";
 import LoadingScreen from "./components/loading-screen";
 import ProtectRoute from "./routes/protect-route";
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,17 @@ const router = createBrowserRouter([
   },
 ]);
 
+const GlobalStyles = createGlobalStyle`
+  ${reset}
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #ffec72;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+`;
+
 function App() {
   const [isLoading, setLoading] = useState(true);
   const init = async () => {
@@ -50,7 +63,10 @@ function App() {
   }, []);
 
   return (
-    <>{isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}</>
+    <>
+      <GlobalStyles />
+      {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
+    </>
   );
 }
 
