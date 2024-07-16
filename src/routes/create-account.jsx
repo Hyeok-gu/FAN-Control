@@ -88,12 +88,12 @@ export default function CreateAccount() {
         <Input
           className="createBtn"
           type="submit"
-          value={isLoading ? "Loading..." : "회원가입하기"}
+          value={isLoading ? "Loading..." : "가입하기"}
         />
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
       <Switcher>
-        회원이신가요? <Link to="/login">로그인하기 &rarr;</Link>
+        이미 회원이신가요? <Link to="/login">로그인하기 &rarr;</Link>
       </Switcher>
     </Wrapper>
   );

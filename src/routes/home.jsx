@@ -8,6 +8,7 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const fanRef = doc(db, "fan", "vv9DGF4kbnJbetb01QrK");
 
@@ -95,6 +96,7 @@ const Logout = styled.button`
 `;
 
 export default function Home() {
+  const navigate = useNavigate();
   const [fanInfo, setFanInfo] = useState("");
   const [lastUser, setLastUser] = useState("");
   const [loading, setLoading] = useState(false);
@@ -135,8 +137,13 @@ export default function Home() {
     }
   };
 
-  const logOut = () => {
-    auth.signOut();
+  const logOut = async () => {
+    try {
+      await auth.signOut();
+      navigate("/login");
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
   };
 
   return (

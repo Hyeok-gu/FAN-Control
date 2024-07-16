@@ -17,7 +17,9 @@ export const Form = styled.form`
 `;
 export const Input = styled.input`
   height: 36px;
-  padding: 0 10px;
+  padding: 0 16px;
+  border-radius: 24px;
+  border: 1px solid #ddd;
   &.createBtn {
     border: none;
     background-color: #222;
