@@ -31,68 +31,118 @@ const Header = styled.header`
 `;
 
 const FanWrapper = styled.div`
-  border: 1px solid red;
-  height: 100%;
-`;
-
-const Fan = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   position: relative;
-  animation: spin ${(props) => 1 / props.power}s linear infinite;
-  &::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 10px;
-    background-color: #222;
+  margin-top: 60px;
+  img {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
   }
-  &::after {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 100%;
-    background-color: #222;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .fanTop {
+    z-index: 3;
   }
+  .fanMid {
+    z-index: 2;
+    top: 14px;
+    animation: spin ${(props) => 1 / props.power}s linear infinite;
 
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
-    to {
-      transform: rotate(360deg);
-    }
+  }
+  .fanBottom {
+    z-index: 1;
+
+    top: 130px;
   }
 `;
 
 const BtnWrapper = styled.div`
   width: 100%;
-  max-width: 600px;
+  max-width: 412px;
   border: 2px solid #685a1c;
   border-radius: 24px;
-  padding: 48px;
+  padding: 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 24px;
-  position: relative;
+  position: absolute;
+  bottom: 100px;
 `;
 
 const Button = styled.button`
-  width: 100px;
-  height: 100px;
-  background-color: #eee;
-  color: #222;
+  background-color: #e9e9e9;
+  position: relative;
+  width: 40px;
+  height: 36px;
+  border-radius: 6px 6px 0 0;
+  border: none;
+  position: relative;
+  transition: all 0.1s linear;
+  &::after {
+    content: "";
+    width: 2px;
+    height: 30px;
+    background-color: #878787;
+    position: absolute;
+    display: block;
+    bottom: 0;
+    right: 0;
+    transition: all 0.1s linear;
+  }
+  &::before {
+    content: "";
+    width: 2px;
+    height: 30px;
+    background-color: #878787;
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    transition: all 0.1s linear;
+  }
+  span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 6px;
+    border-radius: 6px 6px 0 0;
+    background-color: #878787;
+    transition: all 0.1s linear;
+  }
+  .icon {
+    width: 100%;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    div {
+      width: 4px;
+      height: 10px;
+      border-radius: 2px;
+      background-color: #222;
+    }
+  }
   &.active {
-    background-color: red !important;
+    height: 13px;
+    &::after,
+    &::before {
+      height: 7px;
+    }
+    .icon {
+      display: none;
+    }
   }
 `;
 
@@ -120,16 +170,27 @@ const Bullet = styled.div`
   }
 `;
 
-const Button2nd = styled(Button)`
-  background-color: aliceblue;
-`;
+const Button2nd = styled(Button)``;
 
-const Button3rd = styled(Button)`
-  background-color: greenyellow;
-`;
+const Button3rd = styled(Button)``;
 
 const Button4th = styled(Button)`
-  background-color: darkcyan;
+  background-color: #e63333;
+  &::after,
+  &::before {
+    background-color: #810e0e;
+  }
+  span {
+    background-color: #810e0e;
+  }
+  .icon {
+    div {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background-color: #fff;
+    }
+  }
 `;
 
 const Logout = styled.button`
@@ -146,6 +207,15 @@ const Logout = styled.button`
     background-color: #fff;
     color: #222;
   }
+`;
+
+const FanInfos = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 70px;
 `;
 
 export default function Home() {
@@ -204,33 +274,50 @@ export default function Home() {
       <Header>
         <Logout onClick={logOut}>Log out</Logout>
       </Header>
-      <FanWrapper>
-        <Fan power={fanInfo === null ? 0 : fanInfo} />
+      <FanWrapper power={fanInfo === null ? 0 : fanInfo}>
+        <img className="fanTop" src="src/asset/fan_top.png"></img>
+        <img className="fanMid" src="src/asset/fan_mid.png"></img>
+        <img className="fanBottom" src="src/asset/fan_bottom.png"></img>
       </FanWrapper>
       <BtnWrapper>
         <Button4th
           className={activeIndex[0] === 0 ? "active" : null}
           onClick={() => handleFanPower(0)}
         >
-          멈춤
+          <span></span>
+          <div className="icon">
+            <div></div>
+          </div>
         </Button4th>
         <Button
           className={activeIndex[0] === 1 ? "active" : null}
           onClick={() => handleFanPower(1)}
         >
-          약풍
+          <span></span>
+          <div className="icon">
+            <div></div>
+          </div>
         </Button>
         <Button2nd
+          className={activeIndex[0] === 2 ? "active" : null}
+          onClick={() => handleFanPower(2)}
+        >
+          <span></span>
+          <div className="icon">
+            <div></div>
+            <div></div>
+          </div>
+        </Button2nd>
+        <Button3rd
           className={activeIndex[0] === 3 ? "active" : null}
           onClick={() => handleFanPower(3)}
         >
-          미풍
-        </Button2nd>
-        <Button3rd
-          className={activeIndex[0] === 5 ? "active" : null}
-          onClick={() => handleFanPower(5)}
-        >
-          강풍
+          <span></span>
+          <div className="icon">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </Button3rd>
         <Bullet className="one" />
         <Bullet className="two" />
@@ -242,9 +329,11 @@ export default function Home() {
       ) : (
         <>
           {fanInfo ? (
-            <div>
-              <span>마지막 누른 사람: {lastUser}</span>
-            </div>
+            <FanInfos>
+              <span>
+                {lastUser} 님이 {fanInfo}단계를 눌렀습니다.
+              </span>
+            </FanInfos>
           ) : null}
         </>
       )}
