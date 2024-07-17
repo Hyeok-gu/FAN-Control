@@ -49,6 +49,11 @@ const GlobalStyles = createGlobalStyle`
     background-color: #81DFC2;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
+  h1 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
 `;
 
 function App() {
