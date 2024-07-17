@@ -309,8 +309,8 @@ export default function Home() {
           </div>
         </Button2nd>
         <Button3rd
-          className={activeIndex[0] === 3 ? "active" : null}
-          onClick={() => handleFanPower(3)}
+          className={activeIndex[0] === 5 ? "active" : null}
+          onClick={() => handleFanPower(5)}
         >
           <span></span>
           <div className="icon">
@@ -331,7 +331,7 @@ export default function Home() {
           {fanInfo ? (
             <FanInfos>
               <span>
-                {lastUser} 님이 {fanInfo}단계를 눌렀습니다.
+                {lastUser} 님이 {fanInfo == 5 ? "3" : fanInfo}단계를 눌렀습니다.
               </span>
             </FanInfos>
           ) : null}
