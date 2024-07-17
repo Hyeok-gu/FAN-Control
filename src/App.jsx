@@ -13,7 +13,7 @@ import reset from "styled-reset";
 
 const router = createBrowserRouter([
   {
-    path: "/fanControl",
+    path: "/",
     element: (
       <ProtectRoute>
         <Layout />
@@ -31,11 +31,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/fanControl/login",
+    path: "/login",
     element: <Login />,
   },
   {
-    path: "/fanControl/create-account",
+    path: "/create-account",
     element: <CreateAccount />,
   },
 ]);
