@@ -3306,6 +3306,7 @@ ${this.customData.serverResponse}`:this.message=this._baseMessage}}var Bn;(funct
   gap: 24px;
   position: absolute;
   bottom: 100px;
+  z-index: 10;
 `,Dh=Qe.button`
   background-color: #e9e9e9;
   position: relative;
