@@ -76,6 +76,7 @@ const BtnWrapper = styled.div`
   gap: 24px;
   position: absolute;
   bottom: 100px;
+  z-index: 10;
 `;
 
 const Button = styled.button`
