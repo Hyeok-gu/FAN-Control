@@ -275,9 +275,9 @@ export default function Home() {
         <Logout onClick={logOut}>Log out</Logout>
       </Header>
       <FanWrapper power={fanInfo === null ? 0 : fanInfo}>
-        <img className="fanTop" src="/img/fan_top.png"></img>
-        <img className="fanMid" src="/img/fan_mid.png"></img>
-        <img className="fanBottom" src="/img/fan_bottom.png"></img>
+        <img className="fanTop" src="/public/img/fan_top.png"></img>
+        <img className="fanMid" src="/public/img/fan_mid.png"></img>
+        <img className="fanBottom" src="/public/img/fan_bottom.png"></img>
       </FanWrapper>
       <BtnWrapper>
         <Button4th
